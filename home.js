@@ -25,19 +25,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const seasonThemes = {
         spring: {
-            background: 'images/背景（春）.png',
+            background: 'images/背景（春）.webp',
             track: "bgm/05. Spring (It's A Big World Outside).mp3"
         },
         summer: {
-            background: 'images/背景（夏）.png',
+            background: 'images/背景（夏）.webp',
             track: "bgm/13. Summer (Nature's Crescendo).mp3"
         },
         fall: {
-            background: 'images/背景（秋）.png',
+            background: 'images/背景（秋）.webp',
             track: "bgm/20. Fall (The Smell Of Mushroom).mp3"
         },
         winter: {
-            background: 'images/背景（冬）.png',
+            background: 'images/背景（冬）.webp',
             track: "bgm/27. Winter (Nocturne Of Ice).mp3"
         }
     };
@@ -291,10 +291,10 @@ document.addEventListener('DOMContentLoaded', () => {
             'images/思绪飘乱.png',
             'images/惊讶.gif',
             'images/无话可说.png',
-            'images/背景（春）.png',
-            'images/背景（夏）.png',
-            'images/背景（秋）.png',
-            'images/背景（冬）.png'
+            'images/背景（春）.webp',
+            'images/背景（夏）.webp',
+            'images/背景（秋）.webp',
+            'images/背景（冬）.webp'
         ];
         const deferredAudio = [
             'bgm/05. Spring (It\'s A Big World Outside).mp3',
