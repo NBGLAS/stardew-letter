@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>星露谷样式指南</title>
+    <script>
+        (function () {
+            var savedTheme = localStorage.getItem('stardew-theme');
+            var preferredDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            document.documentElement.setAttribute('data-theme', savedTheme || (preferredDark ? 'dark' : 'light'));
+        })();
+    </script>
+    <link rel="stylesheet" href="tokens.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-shell">
+        <header class="topbar card-surface">
+            <div>
+                <p class="eyebrow">Style Guide</p>
+                <h1 class="page-title">星露谷视觉样式指南</h1>
+                <p class="page-subtitle">可直接在浏览器中打开，也可通过浏览器打印为 PDF。</p>
+            </div>
+            <div class="toolbar">
+                <a class="ui-button" href="index.html">查看主页面</a>
+                <a class="ui-button ui-button-secondary" href="components.html">查看组件页</a>
+            </div>
+        </header>
+
+        <main class="side-panel">
+            <section class="info-card card-surface">
+                <div class="card-head">
+                    <div>
+                        <p class="eyebrow">Palette</p>
+                        <h2 class="section-title">配色策略</h2>
+                    </div>
+                </div>
+                <ul class="feature-list">
+                    <li><span class="feature-kicker">主色</span><span>以天空蓝为主，承担行动按钮、强调状态与高可见焦点。</span></li>
+                    <li><span class="feature-kicker">辅色</span><span>以草地绿与麦穗橙补足田园氛围，用于标签、亮点提示和插画呼应。</span></li>
+                    <li><span class="feature-kicker">中性色</span><span>通过冷白、雾蓝与深夜蓝形成亮暗双主题的对比骨架。</span></li>
+                </ul>
+            </section>
+
+            <section class="info-card card-surface">
+                <div class="card-head">
+                    <div>
+                        <p class="eyebrow">Typography</p>
+                        <h2 class="section-title">字体层级</h2>
+                    </div>
+                </div>
+                <ul class="feature-list">
+                    <li><span class="feature-kicker">标题</span><span>`Zpix` 用于品牌标题、章节标题、状态标签，强化像素识别度。</span></li>
+                    <li><span class="feature-kicker">正文</span><span>系统无衬线字体用于大段说明，提升现代感与移动端可读性。</span></li>
+                    <li><span class="feature-kicker">注释</span><span>使用较小字号与更柔和颜色，保持层级清晰同时满足对比度。</span></li>
+                </ul>
+            </section>
+
+            <section class="info-card card-surface">
+                <div class="card-head">
+                    <div>
+                        <p class="eyebrow">Spacing</p>
+                        <h2 class="section-title">栅格与留白</h2>
+                    </div>
+                </div>
+                <ul class="feature-list">
+                    <li><span class="feature-kicker">8 pt 栅格</span><span>全局基于 8 px 递增，核心间距使用 24 / 32 / 48 px。</span></li>
+                    <li><span class="feature-kicker">卡片容器</span><span>统一使用大圆角、边框和柔和阴影，形成前中后景层次。</span></li>
+                    <li><span class="feature-kicker">动效规范</span><span>轻微位移、柔和放大与光晕呼吸，减少突兀感并兼容 reduced motion。</span></li>
+                </ul>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

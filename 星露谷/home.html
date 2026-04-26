@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>星露谷 - 主页</title>
+    <link rel="stylesheet" href="home.css">
+</head>
+<body>
+    <!-- 自定义鼠标 -->
+    <div id="custom-cursor"></div>
+
+    <!-- 阶段 0：引导页 -->
+    <div id="entry-page" class="page-section active">
+        <img src="images/作者.gif" alt="作者" id="btn-enter" class="pixel-img clickable">
+        <p class="hint-text">点击进入</p>
+    </div>
+
+    <!-- 阶段 1：主页 -->
+    <div id="main-page" class="page-section hidden">
+        <!-- 顶部区域 -->
+        <header class="header-area">
+            <div class="music-control" id="btn-music" role="button" tabindex="0" aria-label="切换音乐">
+                <img src="images/音乐.gif" alt="音乐" class="pixel-img">
+                <span class="tooltip">单击暂停/继续，长按切歌</span>
+            </div>
+            <div class="logo-container">
+                <img src="images/主页 logo左.png" alt="左饰" class="pixel-img logo-side">
+                <img src="images/星露谷logo（中文）.png" alt="星露谷" class="pixel-img logo-main clickable" id="btn-main-logo" role="button" tabindex="0" aria-label="切换为英文星露谷标志">
+                <img src="images/主页 logo右.png" alt="右饰" class="pixel-img logo-side">
+            </div>
+        </header>
+
+        <div class="scene-decor" aria-hidden="true">
+            <img src="images/祝尼魔（白色 舞动）.gif" alt="" class="pixel-img scene-sprite sprite-junimo-white">
+            <img src="images/问号.gif" alt="" class="pixel-img scene-sprite sprite-question">
+        </div>
+
+        <section class="quest-board" aria-label="今日提示">
+            <p class="quest-kicker">今日提示</p>
+            <p class="quest-title">先和镇上的朋友们聊聊，再去找刘易斯解锁下一程。</p>
+            <div class="quest-tags">
+                <span class="quest-tag">
+                    <img src="images/好感.png" alt="" class="pixel-img">
+                    五位伙伴两轮对话
+                </span>
+                <span class="quest-tag">
+                    <img src="images/花束.png" alt="" class="pixel-img">
+                    刘易斯会带你出发
+                </span>
+            </div>
+        </section>
+
+        <section class="season-ribbon" aria-label="农场四季氛围">
+            <button type="button" class="season-chip" data-season="spring" aria-pressed="false">
+                <img src="images/春季.png" alt="" class="pixel-img">
+                春日微风
+            </button>
+            <button type="button" class="season-chip" data-season="summer" aria-pressed="false">
+                <img src="images/夏季.png" alt="" class="pixel-img">
+                夏夜冒险
+            </button>
+            <button type="button" class="season-chip" data-season="fall" aria-pressed="false">
+                <img src="images/秋季.png" alt="" class="pixel-img">
+                秋收心意
+            </button>
+            <button type="button" class="season-chip" data-season="winter" aria-pressed="false">
+                <img src="images/冬季.png" alt="" class="pixel-img">
+                冬灯回响
+            </button>
+        </section>
+
+        <!-- 角色互动区 -->
+        <main class="character-area">
+            <!-- 贾斯 -->
+            <div class="character-wrapper" style="left: 15%; top: 40%;" data-id="jas">
+                <img src="images/贾斯.png" alt="贾斯" class="pixel-img character clickable">
+            </div>
+            <!-- 雷欧 -->
+            <div class="character-wrapper" style="left: 30%; top: 60%;" data-id="leo">
+                <img src="images/雷欧.png" alt="雷欧" class="pixel-img character clickable">
+            </div>
+            <!-- 塞巴斯蒂安 -->
+            <div class="character-wrapper" style="left: 45%; top: 35%;" data-id="sebastian">
+                <img src="images/塞巴斯蒂安.png" alt="塞巴斯蒂安" class="pixel-img character clickable">
+            </div>
+            <!-- 文森特 -->
+            <div class="character-wrapper" style="left: 60%; top: 55%;" data-id="vincent">
+                <img src="images/文森特.png" alt="文森特" class="pixel-img character clickable">
+            </div>
+            <!-- 桑迪 -->
+            <div class="character-wrapper" style="left: 75%; top: 30%;" data-id="sandy">
+                <img src="images/桑迪.png" alt="桑迪" class="pixel-img character clickable">
+            </div>
+            <!-- 刘易斯 -->
+            <div class="character-wrapper" style="left: 85%; top: 65%;" data-id="lewis">
+                <img src="images/刘易斯.png" alt="刘易斯" class="pixel-img character clickable">
+            </div>
+        </main>
+
+        <!-- 对话框 -->
+        <div id="dialog-box" class="hidden">
+            <div class="dialog-content">
+                <p id="dialog-text"></p>
+                <div id="dialog-extra"></div>
+            </div>
+            <button id="btn-next-dialog" class="pixel-btn hidden">出发！</button>
+            <button id="btn-close-dialog" class="pixel-btn">关闭</button>
+        </div>
+
+        <div class="farm-marquee" aria-hidden="true">
+            <img src="images/草莓.png" alt="" class="pixel-img marquee-icon">
+            <img src="images/绿茶.png" alt="" class="pixel-img marquee-icon">
+            <span class="farm-marquee-text">把今天的惊喜都装进鹈鹕镇的风里</span>
+            <img src="images/杨桃.png" alt="" class="pixel-img marquee-icon">
+            <img src="images/海螺.png" alt="" class="pixel-img marquee-icon">
+        </div>
+    </div>
+
+    <audio id="bgm-audio" loop preload="auto">
+        <source src="bgm/02. Cloud Country.flac" type="audio/flac">
+    </audio>
+
+    <script src="common.js"></script>
+    <script src="home.js"></script>
+</body>
+</html>

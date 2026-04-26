@@ -1,0 +1,27 @@
+name: Visual Regression
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  visual-regression:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install Playwright
+        run: |
+          npm init -y
+          npm install @playwright/test http-server
+          npx playwright install --with-deps
+
+      - name: Run visual tests
+        run: npx playwright test

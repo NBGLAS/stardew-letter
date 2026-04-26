@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>星露谷来信</title>
+    <link rel="stylesheet" href="tokens.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <a class="skip-link" href="#main-content">跳到主要内容</a>
+
+    <button class="music-toggle" type="button" aria-label="切换音乐">
+        <img src="images/音乐.gif" alt="" class="music-toggle-icon">
+        <span class="music-toggle-tip">单击暂停/继续，长按切歌</span>
+    </button>
+
+    <div class="page-backdrop" aria-hidden="true">
+        <div class="aurora aurora-left"></div>
+        <div class="aurora aurora-right"></div>
+    </div>
+
+    <div class="decor-layer" aria-hidden="true">
+        <img src="images/鬼魂.gif" alt="" class="floating-sprite sprite-ghost">
+    </div>
+
+    <aside class="side-garden side-garden-left" aria-hidden="true">
+        <div class="side-garden-cluster">
+            <img src="images/苹果树.png" alt="" class="side-garden-item side-tree side-tree-left">
+            <img src="images/郁金香.png" alt="" class="side-garden-item side-flower side-flower-left">
+            <img src="images/海螺.png" alt="" class="side-garden-item side-trinket side-shell-left">
+        </div>
+        <div class="side-garden-cluster side-garden-cluster-mid">
+            <img src="images/夏季亮片（多丛）.png" alt="" class="side-garden-item side-bloom side-bloom-left">
+            <img src="images/花椰菜.png" alt="" class="side-garden-item side-crop side-crop-left">
+        </div>
+        <div class="side-garden-cluster side-garden-cluster-bottom">
+            <img src="images/祝尼魔小屋.png" alt="" class="side-garden-item side-hut">
+            <img src="images/祝尼魔（白色 舞动）.gif" alt="" class="side-garden-item side-junimo-white">
+            <img src="images/草莓作物.png" alt="" class="side-garden-item side-crop side-crop-bottom-left">
+        </div>
+    </aside>
+
+    <aside class="side-garden side-garden-right" aria-hidden="true">
+        <div class="side-garden-cluster">
+            <img src="images/香蕉树.png" alt="" class="side-garden-item side-tree side-tree-right">
+            <img src="images/虞美人（成丛）.png" alt="" class="side-garden-item side-flower side-flower-right">
+            <img src="images/音符.png" alt="" class="side-garden-item side-trinket side-note-right">
+        </div>
+        <div class="side-garden-cluster side-garden-cluster-mid">
+            <img src="images/杨桃植株.png" alt="" class="side-garden-item side-crop side-crop-right">
+            <img src="images/仙人掌 开花.png" alt="" class="side-garden-item side-cactus">
+        </div>
+        <div class="side-garden-cluster side-garden-cluster-bottom">
+            <img src="images/南瓜.png" alt="" class="side-garden-item side-crop side-crop-bottom-right">
+            <img src="images/祝你魔骑小鸡.gif" alt="" class="side-garden-item side-rider">
+            <img src="images/星之果茶.png" alt="" class="side-garden-item side-trinket side-tea-right">
+        </div>
+    </aside>
+
+    <div class="custom-cursor" aria-hidden="true"></div>
+
+    <div class="app-shell">
+        <header class="topbar card-surface" aria-label="页面头部">
+            <div class="brand-block">
+                <div class="brand-badge">
+                    <img src="images/杨桃.png" alt="" class="icon icon-32">
+                </div>
+                <div>
+                    <p class="eyebrow">Pelican Town Mailroom</p>
+                    <h1 class="page-title">星露谷来信</h1>
+                </div>
+            </div>
+            <div class="mail-summary" aria-label="来信提示">
+                <span class="mail-chip">
+                    <img src="images/海螺.png" alt="" class="icon icon-16">
+                    每页都藏着一份小奖励
+                </span>
+                <span class="mail-chip">
+                    <img src="images/星之果茶.png" alt="" class="icon icon-16">
+                    集齐 7 颗星之果实会解锁惊喜
+                </span>
+            </div>
+        </header>
+
+        <main id="main-content" class="main-grid" tabindex="-1">
+            <section class="hero card-surface" aria-labelledby="letter-heading">
+                <div class="hero-topline">
+                    <span class="status-pill">
+                        <img src="images/爱心.png" alt="" class="icon icon-16">
+                        今日好感度提升
+                    </span>
+                    <span class="mini-chip status-pill-accent">
+                        <img src="images/音符.png" alt="" class="icon icon-16">
+                        每一页都有新的回响
+                    </span>
+                    <span class="mini-chip">
+                        <img src="images/花束.png" alt="" class="icon icon-16">
+                        记得把奖励都带走
+                    </span>
+                </div>
+
+                <div class="mail-sticker-row" aria-hidden="true">
+                    <img src="images/郁金香（单独）.png" alt="" class="mail-sticker">
+                    <img src="images/虞美人（单独）.png" alt="" class="mail-sticker">
+                    <img src="images/星之果茶.png" alt="" class="mail-sticker">
+                    <img src="images/海螺.png" alt="" class="mail-sticker">
+                    <img src="images/五彩碎片.png" alt="" class="mail-sticker">
+                </div>
+
+                <div class="hero-stage">
+                    <div class="hero-glow" aria-hidden="true"></div>
+                    <img src="images/信件.png" alt="" class="letter-shadow">
+
+                    <article class="letter-frame" aria-labelledby="letter-heading" aria-describedby="letter-description">
+                        <div class="letter-halo" aria-hidden="true"></div>
+                        <img src="images/信件（详情页）.png" alt="中心信件" class="letter-bg">
+
+                        <div class="letter-pin-group" id="stardrop-container" style="display: flex; flex-direction: row; gap: 5px; flex-wrap: wrap; padding: 10px; z-index: 5; position: absolute; top: 0; left: 0;">
+                            <img src="images/祝尼魔（紫色 挥手）.gif" alt="紫色祝尼魔" class="pin pin-right pin-junimo interactive-junimo" id="btn-pin-junimo" role="button" tabindex="0" aria-label="播放祝尼魔音效" style="position: absolute; right: 10%; top: -10%;">
+                            <!-- 星之果实将动态添加到这里 -->
+                        </div>
+
+                        <div class="letter-content">
+                            <p class="letter-label">鹈鹕镇邮政</p>
+                            <div class="letter-header-row">
+                                <div class="letter-header-main">
+                                    <h2 id="letter-heading" class="letter-title">写给亲爱的老乡Oukeou</h2>
+                                </div>
+                                <div class="letter-header-side">
+                                    <div class="title-bouquet-card" aria-hidden="true">
+                                        <img src="images/花束.png" alt="" class="title-bouquet-inline">
+                                    </div>
+                                    <div class="family-showcase" aria-label="家人合影">
+                                        <button type="button" class="family-member" data-member="hfkk" aria-label="HFKK">
+                                            <img src="images/爱心.gif" alt="" class="family-heart" aria-hidden="true">
+                                            <img src="images/HFKK.png" alt="HFKK" class="family-avatar">
+                                        </button>
+                                        <button type="button" class="family-member" data-member="yuzi" aria-label="煜仔">
+                                            <img src="images/爱心.gif" alt="" class="family-heart" aria-hidden="true">
+                                            <img src="images/煜仔.jpg" alt="煜仔" class="family-avatar">
+                                        </button>
+                                        <button type="button" class="family-member" data-member="xiatian" aria-label="夏天">
+                                            <img src="images/爱心.gif" alt="" class="family-heart" aria-hidden="true">
+                                            <img src="images/夏天.jpg" alt="夏天" class="family-avatar">
+                                        </button>
+                                        <button type="button" class="family-member" data-member="oukeou" aria-label="Oukeou">
+                                            <img src="images/爱心.gif" alt="" class="family-heart" aria-hidden="true">
+                                            <img src="images/Oukeou.png" alt="Oukeou" class="family-avatar">
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="typewriter-panel" aria-live="polite" id="typewriter-panel"><span id="typewriter"></span><span class="cursor-blink" id="cursor"></span>
+                                <div class="letter-actions hidden" id="letter-actions" style="display: flex; justify-content: center; align-items: center; position: relative;">
+                                    <div id="btn-prev-page" class="hidden clickable" style="position: absolute; left: 0; bottom: 0; width: 0; height: 0; border-top: 15px solid transparent; border-bottom: 15px solid transparent; border-right: 20px solid #8e4a11; cursor: pointer; filter: drop-shadow(-2px 2px 0px #432112);"></div>
+                                    <span id="reward-hint" class="reward-hint hidden">点击我有奖励！</span>
+                                    <img src="images/信件.png" alt="信件" class="pixel-img clickable reward-envelope" id="btn-collect-stardrop" style="width: 48px; cursor: pointer; transition: transform 0.2s;">
+                                    <div id="btn-next-page" class="hidden clickable" style="position: absolute; right: 0; bottom: 0; width: 0; height: 0; border-top: 15px solid transparent; border-bottom: 15px solid transparent; border-left: 20px solid #8e4a11; cursor: pointer; filter: drop-shadow(2px 2px 0px #432112);"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </section>
+        </main>
+
+        <!-- 星之果实模态框 -->
+        <div id="stardrop-modal" class="hidden" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.6); z-index: 9999; display: flex; justify-content: center; align-items: center; flex-direction: column; overflow: hidden; pointer-events: auto;">
+            <div style="background: #f4dca6; border: 8px solid #8e4a11; padding: 30px; text-align: center; border-radius: 10px; display: flex; flex-direction: column; align-items: center; justify-content: center; pointer-events: auto;">
+                <img src="images/星之果实.png" alt="星之果实" class="pixel-img" style="width: 64px; animation: bounce 2s infinite ease-in-out;">
+                <p style="font-family: 'Zpix', sans-serif; font-size: 24px; color: #432112; margin-top: 20px;">恭喜你获得星之果实！</p>
+                <button id="btn-close-stardrop" style="margin-top: 20px; padding: 10px 20px; font-family: 'Zpix', sans-serif; font-size: 20px; background: #d67f2b; color: white; border: 4px solid #8e4a11; border-radius: 8px; cursor: pointer; pointer-events: auto;">收下</button>
+            </div>
+        </div>
+
+        <audio id="bgm-audio" loop preload="auto">
+            <source src="bgm/04. Settling In.flac" type="audio/flac">
+        </audio>
+
+        <section class="gallery-strip card-surface" aria-label="素材氛围带">
+            <div class="gallery-item">
+                <img src="images/紫色小鸡.png" alt="左下角小鸡装饰" class="gallery-figure gallery-figure-chicken">
+            </div>
+            <div class="gallery-icons" aria-hidden="true">
+                <img src="images/草莓.png" alt="" class="icon icon-32">
+                <img src="images/绿茶.png" alt="" class="icon icon-32">
+                <img src="images/上古水果.png" alt="" class="icon icon-32">
+                <img src="images/香蕉树.png" alt="" class="icon icon-32">
+            </div>
+            <div class="gallery-note">
+                <img src="images/阿比盖尔 吹笛子.gif" alt="" class="gallery-note-figure">
+                <p>把回忆慢慢拆开看，奖励和惊喜都会在路上等你。</p>
+            </div>
+            <img src="images/祝尼魔（跳舞）.gif" alt="右下角跳舞祝尼魔" class="gallery-figure gallery-figure-junimo interactive-junimo" id="btn-gallery-junimo" role="button" tabindex="0" aria-label="播放祝尼魔音效">
+        </section>
+
+        <section class="pet-corner card-surface" aria-label="农场小伙伴">
+            <div class="pet-corner-head">
+                <div>
+                    <p class="eyebrow">Farm Friends</p>
+                    <h2 class="section-title">农场小伙伴</h2>
+                </div>
+                <p class="pet-corner-copy">点一点小伙伴会有不同回应，把胡萝卜拖给马儿试试看。</p>
+            </div>
+            <div class="pet-stage" id="pet-stage">
+                <button type="button" class="pet-friend pet-friend-nafu" data-pet-sound="dog" aria-label="nafu">
+                    <img src="images/爱心.gif" alt="" class="pet-heart" aria-hidden="true">
+                    <img src="images/nafu.png" alt="nafu" class="pet-figure">
+                    <span class="pet-name">nafu</span>
+                </button>
+                <button type="button" class="pet-friend pet-friend-zhaocai" data-pet-sound="cat" aria-label="招财">
+                    <img src="images/爱心.gif" alt="" class="pet-heart" aria-hidden="true">
+                    <img src="images/招财.png" alt="招财" class="pet-figure">
+                    <span class="pet-name">招财</span>
+                </button>
+                <button type="button" class="pet-friend pet-friend-halin" data-pet-sound="dog" aria-label="哈林">
+                    <img src="images/爱心.gif" alt="" class="pet-heart" aria-hidden="true">
+                    <img src="images/哈林.png" alt="哈林" class="pet-figure">
+                    <span class="pet-name">哈林</span>
+                </button>
+                <button type="button" class="pet-friend pet-friend-horse" id="btn-pet-horse" aria-label="马儿">
+                    <img src="images/爱心.gif" alt="" class="pet-heart" aria-hidden="true">
+                    <span class="pet-bubble" id="horse-wish">想吃一根胡萝卜</span>
+                    <img src="images/马儿.gif" alt="马儿" class="pet-figure pet-horse-figure">
+                    <span class="pet-name">马儿</span>
+                </button>
+                <button type="button" class="draggable-carrot" id="btn-draggable-carrot" aria-label="拖动胡萝卜">
+                    <img src="images/胡萝卜.png" alt="胡萝卜" class="carrot-figure">
+                </button>
+            </div>
+        </section>
+    </div>
+
+    <!-- 左下角成就提示框 -->
+    <div id="achievement-toast" class="achievement-toast hidden">
+        <img src="images/新成就 .png" alt="新成就" class="achievement-full-img">
+    </div>
+
+    <script src="common.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

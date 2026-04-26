@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>星露谷组件演示</title>
+    <script>
+        (function () {
+            var savedTheme = localStorage.getItem('stardew-theme');
+            var preferredDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            document.documentElement.setAttribute('data-theme', savedTheme || (preferredDark ? 'dark' : 'light'));
+        })();
+    </script>
+    <link rel="stylesheet" href="tokens.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-shell">
+        <header class="topbar card-surface">
+            <div>
+                <p class="eyebrow">Component Gallery</p>
+                <h1 class="page-title">星露谷组件演示</h1>
+                <p class="page-subtitle">作为 Storybook 等价的本地静态演示页，便于核对按钮、卡片、输入框与色板。</p>
+            </div>
+            <div class="toolbar">
+                <button id="themeToggle" class="ui-button ui-button-secondary" type="button" aria-label="切换主题" aria-pressed="false">
+                    <img src="images/五彩碎片.png" alt="" class="icon icon-24">
+                    <span id="themeToggleText">切换夜景</span>
+                </button>
+                <a class="ui-button" href="index.html">返回主页面</a>
+            </div>
+        </header>
+
+        <main class="side-panel">
+            <section class="info-card card-surface">
+                <div class="card-head">
+                    <div>
+                        <p class="eyebrow">Color Tokens</p>
+                        <h2 class="section-title">色彩与层级</h2>
+                    </div>
+                </div>
+                <div class="chip-grid">
+                    <span class="mini-chip">Primary</span>
+                    <span class="mini-chip">Secondary</span>
+                    <span class="mini-chip">Accent</span>
+                    <span class="mini-chip">Surface</span>
+                </div>
+            </section>
+
+            <section class="info-card card-surface">
+                <div class="card-head">
+                    <div>
+                        <p class="eyebrow">Buttons</p>
+                        <h2 class="section-title">按钮状态</h2>
+                    </div>
+                </div>
+                <div class="chip-grid">
+                    <button class="ui-button" type="button">主按钮</button>
+                    <button class="ui-button ui-button-secondary" type="button">次按钮</button>
+                    <button class="ui-button" type="button" disabled>禁用按钮</button>
+                </div>
+            </section>
+
+            <section class="info-card card-surface">
+                <div class="card-head">
+                    <div>
+                        <p class="eyebrow">Forms</p>
+                        <h2 class="section-title">表单输入</h2>
+                    </div>
+                </div>
+                <label class="ui-input-group" for="demoInput">
+                    <span class="input-label">演示输入框</span>
+                    <input id="demoInput" class="ui-input" type="text" placeholder="输入一些内容">
+                </label>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
