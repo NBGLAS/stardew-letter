@@ -61,41 +61,25 @@ document.addEventListener('DOMContentLoaded', () => {
     const MUSIC_HOLD_DURATION = 420;
 
     bgmAudio.loop = false;
-    bgmAudio.preload = 'auto';
+    bgmAudio.preload = 'metadata';
     dialogAudio.preload = 'auto';
 
-    function unlockAudioElement(audio) {
+    function warmAudioElement(audio) {
         if (!audio) {
             return;
         }
 
-        const wasMuted = audio.muted;
-        audio.muted = true;
-
-        const resetAudio = () => {
-            audio.pause();
-            audio.currentTime = 0;
-            audio.muted = wasMuted;
-        };
-
-        const playPromise = audio.play();
-        if (playPromise && typeof playPromise.then === 'function') {
-            playPromise.then(resetAudio).catch(() => {
-                audio.muted = wasMuted;
-            });
-            return;
-        }
-
-        resetAudio();
+        loadCurrentTrack();
+        audio.load();
     }
 
     function setupAudioUnlock() {
-        const unlockAudio = () => {
-            unlockAudioElement(bgmAudio);
+        const warmAudio = () => {
+            warmAudioElement(bgmAudio);
         };
 
-        window.addEventListener('pointerdown', unlockAudio, { once: true, passive: true });
-        window.addEventListener('keydown', unlockAudio, { once: true });
+        window.addEventListener('pointerdown', warmAudio, { once: true, passive: true });
+        window.addEventListener('keydown', warmAudio, { once: true });
     }
 
     function getActiveTrack() {
@@ -296,16 +280,8 @@ document.addEventListener('DOMContentLoaded', () => {
             'images/背景（秋）.webp',
             'images/背景（冬）.webp'
         ];
-        const deferredAudio = [
-            'bgm/05. Spring (It\'s A Big World Outside).mp3',
-            'bgm/13. Summer (Nature\'s Crescendo).mp3',
-            'bgm/20. Fall (The Smell Of Mushroom).mp3',
-            'bgm/27. Winter (Nocturne Of Ice).mp3'
-        ];
-
         const runPreload = () => {
             preloadImages(deferredImages);
-            deferredAudio.forEach((src) => prefetchResource(src, 'audio'));
         };
         if ('requestIdleCallback' in window) {
             window.requestIdleCallback(runPreload, { timeout: 1800 });
@@ -342,7 +318,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             preloadImages([theme.background]);
-            prefetchResource(theme.track, 'audio');
         };
 
         chip.addEventListener('click', () => {

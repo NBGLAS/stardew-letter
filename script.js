@@ -61,7 +61,7 @@ const pageTurnAudio = new Audio("yinxiao/翻书声.mp3");
 const MUSIC_HOLD_DURATION = 420;
 const prefersTouchInput = window.matchMedia("(hover: none), (pointer: coarse)").matches;
 
-bgmAudio.preload = "auto";
+bgmAudio.preload = "metadata";
 selectButtonAudio.preload = "auto";
 gainItemAudio.preload = "auto";
 junimoAudio.preload = "auto";
@@ -91,38 +91,22 @@ function prefetchResource(url, as) {
     document.head.appendChild(link);
 }
 
-function unlockAudioElement(audio) {
+function warmAudioElement(audio) {
     if (!audio) {
         return;
     }
 
-    const wasMuted = audio.muted;
-    audio.muted = true;
-
-    const resetAudio = () => {
-        audio.pause();
-        audio.currentTime = 0;
-        audio.muted = wasMuted;
-    };
-
-    const playPromise = audio.play();
-    if (playPromise && typeof playPromise.then === "function") {
-        playPromise.then(resetAudio).catch(() => {
-            audio.muted = wasMuted;
-        });
-        return;
-    }
-
-    resetAudio();
+    loadCurrentTrack();
+    audio.load();
 }
 
 function setupAudioUnlock() {
-    const unlockAudio = () => {
-        unlockAudioElement(bgmAudio);
+    const warmAudio = () => {
+        warmAudioElement(bgmAudio);
     };
 
-    window.addEventListener("pointerdown", unlockAudio, { once: true, passive: true });
-    window.addEventListener("keydown", unlockAudio, { once: true });
+    window.addEventListener("pointerdown", warmAudio, { once: true, passive: true });
+    window.addEventListener("keydown", warmAudio, { once: true });
 }
 
 function loadCurrentTrack() {
@@ -670,11 +654,9 @@ function init() {
         "images/星之果实.gif",
         "images/鬼魂.gif"
     ];
-    const deferredAudio = playlist.slice(1);
 
     const warmUpAssets = () => {
         preloadImages(deferredImages);
-        deferredAudio.forEach((src) => prefetchResource(src, "audio"));
     };
 
     if ("requestIdleCallback" in window) {
