@@ -1,4 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
+    if ('serviceWorker' in navigator && window.location.protocol !== 'file:') {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('./sw.js').catch(() => {
+                // 静默降级，不影响页面正常使用
+            });
+        }, { once: true });
+    }
+
     const customCursor = document.getElementById('custom-cursor');
     const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
 

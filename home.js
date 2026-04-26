@@ -61,7 +61,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const MUSIC_HOLD_DURATION = 420;
 
     bgmAudio.loop = false;
-    dialogAudio.preload = 'none';
+    bgmAudio.preload = 'auto';
+    dialogAudio.preload = 'auto';
 
     function unlockAudioElement(audio) {
         if (!audio) {
@@ -103,6 +104,18 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         return playlist[state.currentTrackIndex];
+    }
+
+    function prefetchResource(url, as) {
+        if (!url || document.querySelector(`link[rel="prefetch"][href="${url}"]`)) {
+            return;
+        }
+
+        const link = document.createElement('link');
+        link.rel = 'prefetch';
+        link.as = as;
+        link.href = url;
+        document.head.appendChild(link);
     }
 
     function loadCurrentTrack() {
@@ -283,8 +296,17 @@ document.addEventListener('DOMContentLoaded', () => {
             'images/背景（秋）.png',
             'images/背景（冬）.png'
         ];
+        const deferredAudio = [
+            'bgm/05. Spring (It\'s A Big World Outside).mp3',
+            'bgm/13. Summer (Nature\'s Crescendo).mp3',
+            'bgm/20. Fall (The Smell Of Mushroom).mp3',
+            'bgm/27. Winter (Nocturne Of Ice).mp3'
+        ];
 
-        const runPreload = () => preloadImages(deferredImages);
+        const runPreload = () => {
+            preloadImages(deferredImages);
+            deferredAudio.forEach((src) => prefetchResource(src, 'audio'));
+        };
         if ('requestIdleCallback' in window) {
             window.requestIdleCallback(runPreload, { timeout: 1800 });
         } else {
@@ -312,15 +334,31 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     seasonChips.forEach((chip) => {
+        const warmSeasonTheme = () => {
+            const seasonKey = chip.dataset.season;
+            const theme = seasonThemes[seasonKey];
+            if (!theme) {
+                return;
+            }
+
+            preloadImages([theme.background]);
+            prefetchResource(theme.track, 'audio');
+        };
+
         chip.addEventListener('click', () => {
             const seasonKey = chip.dataset.season;
             applySeasonTheme(seasonKey);
         });
+
+        chip.addEventListener('pointerenter', warmSeasonTheme, { passive: true });
+        chip.addEventListener('focus', warmSeasonTheme);
+        chip.addEventListener('touchstart', warmSeasonTheme, { passive: true });
     });
 
     // 引导页点击进入
     btnEnter.addEventListener('click', () => {
         // 播放音乐
+        loadCurrentTrack();
         playCurrentTrack();
 
         // 像素溶解转场（CSS opacity 控制）

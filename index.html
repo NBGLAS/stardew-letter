@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>星露谷来信</title>
+    <link rel="preload" href="zpix.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="preload" href="images/背景1.png" as="image">
+    <link rel="preload" href="images/信件（详情页）.png" as="image">
     <link rel="stylesheet" href="tokens.css">
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -21,40 +24,40 @@
     </div>
 
     <div class="decor-layer" aria-hidden="true">
-        <img src="images/鬼魂.gif" alt="" class="floating-sprite sprite-ghost">
+        <img src="images/鬼魂.gif" alt="" class="floating-sprite sprite-ghost" loading="lazy" decoding="async" fetchpriority="low">
     </div>
 
     <aside class="side-garden side-garden-left" aria-hidden="true">
         <div class="side-garden-cluster">
-            <img src="images/苹果树.png" alt="" class="side-garden-item side-tree side-tree-left">
-            <img src="images/郁金香.png" alt="" class="side-garden-item side-flower side-flower-left">
-            <img src="images/海螺.png" alt="" class="side-garden-item side-trinket side-shell-left">
+            <img src="images/苹果树.png" alt="" class="side-garden-item side-tree side-tree-left" loading="lazy" decoding="async" fetchpriority="low">
+            <img src="images/郁金香.png" alt="" class="side-garden-item side-flower side-flower-left" loading="lazy" decoding="async" fetchpriority="low">
+            <img src="images/海螺.png" alt="" class="side-garden-item side-trinket side-shell-left" loading="lazy" decoding="async" fetchpriority="low">
         </div>
         <div class="side-garden-cluster side-garden-cluster-mid">
-            <img src="images/夏季亮片（多丛）.png" alt="" class="side-garden-item side-bloom side-bloom-left">
-            <img src="images/花椰菜.png" alt="" class="side-garden-item side-crop side-crop-left">
+            <img src="images/夏季亮片（多丛）.png" alt="" class="side-garden-item side-bloom side-bloom-left" loading="lazy" decoding="async" fetchpriority="low">
+            <img src="images/花椰菜.png" alt="" class="side-garden-item side-crop side-crop-left" loading="lazy" decoding="async" fetchpriority="low">
         </div>
         <div class="side-garden-cluster side-garden-cluster-bottom">
-            <img src="images/祝尼魔小屋.png" alt="" class="side-garden-item side-hut">
-            <img src="images/祝尼魔（白色 舞动）.gif" alt="" class="side-garden-item side-junimo-white">
-            <img src="images/草莓作物.png" alt="" class="side-garden-item side-crop side-crop-bottom-left">
+            <img src="images/祝尼魔小屋.png" alt="" class="side-garden-item side-hut" loading="lazy" decoding="async" fetchpriority="low">
+            <img src="images/祝尼魔（白色 舞动）.gif" alt="" class="side-garden-item side-junimo-white" loading="lazy" decoding="async" fetchpriority="low">
+            <img src="images/草莓作物.png" alt="" class="side-garden-item side-crop side-crop-bottom-left" loading="lazy" decoding="async" fetchpriority="low">
         </div>
     </aside>
 
     <aside class="side-garden side-garden-right" aria-hidden="true">
         <div class="side-garden-cluster">
-            <img src="images/香蕉树.png" alt="" class="side-garden-item side-tree side-tree-right">
-            <img src="images/虞美人（成丛）.png" alt="" class="side-garden-item side-flower side-flower-right">
-            <img src="images/音符.png" alt="" class="side-garden-item side-trinket side-note-right">
+            <img src="images/香蕉树.png" alt="" class="side-garden-item side-tree side-tree-right" loading="lazy" decoding="async" fetchpriority="low">
+            <img src="images/虞美人（成丛）.png" alt="" class="side-garden-item side-flower side-flower-right" loading="lazy" decoding="async" fetchpriority="low">
+            <img src="images/音符.png" alt="" class="side-garden-item side-trinket side-note-right" loading="lazy" decoding="async" fetchpriority="low">
         </div>
         <div class="side-garden-cluster side-garden-cluster-mid">
-            <img src="images/杨桃植株.png" alt="" class="side-garden-item side-crop side-crop-right">
-            <img src="images/仙人掌 开花.png" alt="" class="side-garden-item side-cactus">
+            <img src="images/杨桃植株.png" alt="" class="side-garden-item side-crop side-crop-right" loading="lazy" decoding="async" fetchpriority="low">
+            <img src="images/仙人掌 开花.png" alt="" class="side-garden-item side-cactus" loading="lazy" decoding="async" fetchpriority="low">
         </div>
         <div class="side-garden-cluster side-garden-cluster-bottom">
-            <img src="images/南瓜.png" alt="" class="side-garden-item side-crop side-crop-bottom-right">
-            <img src="images/祝你魔骑小鸡.gif" alt="" class="side-garden-item side-rider">
-            <img src="images/星之果茶.png" alt="" class="side-garden-item side-trinket side-tea-right">
+            <img src="images/南瓜.png" alt="" class="side-garden-item side-crop side-crop-bottom-right" loading="lazy" decoding="async" fetchpriority="low">
+            <img src="images/祝你魔骑小鸡.gif" alt="" class="side-garden-item side-rider" loading="lazy" decoding="async" fetchpriority="low">
+            <img src="images/星之果茶.png" alt="" class="side-garden-item side-trinket side-tea-right" loading="lazy" decoding="async" fetchpriority="low">
         </div>
     </aside>
 
@@ -110,11 +113,11 @@
 
                 <div class="hero-stage">
                     <div class="hero-glow" aria-hidden="true"></div>
-                    <img src="images/信件.png" alt="" class="letter-shadow">
+                    <img src="images/信件.png" alt="" class="letter-shadow" decoding="async">
 
                     <article class="letter-frame" aria-labelledby="letter-heading" aria-describedby="letter-description">
                         <div class="letter-halo" aria-hidden="true"></div>
-                        <img src="images/信件（详情页）.png" alt="中心信件" class="letter-bg">
+                        <img src="images/信件（详情页）.png" alt="中心信件" class="letter-bg" decoding="async" fetchpriority="high">
 
                         <div class="letter-pin-group" id="stardrop-container" style="display: flex; flex-direction: row; gap: 5px; flex-wrap: wrap; padding: 10px; z-index: 5; position: absolute; top: 0; left: 0;">
                             <img src="images/祝尼魔（紫色 挥手）.gif" alt="紫色祝尼魔" class="pin pin-right pin-junimo interactive-junimo" id="btn-pin-junimo" role="button" tabindex="0" aria-label="播放祝尼魔音效" style="position: absolute; right: 10%; top: -10%;">

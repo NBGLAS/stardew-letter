@@ -1339,6 +1339,8 @@ input {
     gap: var(--space-3);
     margin-top: var(--space-4);
     padding: 18px 22px;
+    content-visibility: auto;
+    contain-intrinsic-size: 180px;
 }
 
 .gallery-item {
@@ -1376,6 +1378,8 @@ input {
 .pet-corner {
     margin-top: var(--space-4);
     padding: 20px 24px 28px;
+    content-visibility: auto;
+    contain-intrinsic-size: 420px;
 }
 
 .pet-corner-head {

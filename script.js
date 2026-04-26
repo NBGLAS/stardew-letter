@@ -61,15 +61,35 @@ const pageTurnAudio = new Audio("yinxiao/翻书声.mp3");
 const MUSIC_HOLD_DURATION = 420;
 const prefersTouchInput = window.matchMedia("(hover: none), (pointer: coarse)").matches;
 
-selectButtonAudio.preload = "none";
-gainItemAudio.preload = "none";
-junimoAudio.preload = "none";
-achievementAudio.preload = "none";
-dogAudio.preload = "none";
-catAudio.preload = "none";
-horseRunAudio.preload = "none";
-horseNeighAudio.preload = "none";
-pageTurnAudio.preload = "none";
+bgmAudio.preload = "auto";
+selectButtonAudio.preload = "auto";
+gainItemAudio.preload = "auto";
+junimoAudio.preload = "auto";
+achievementAudio.preload = "auto";
+dogAudio.preload = "auto";
+catAudio.preload = "auto";
+horseRunAudio.preload = "auto";
+horseNeighAudio.preload = "auto";
+pageTurnAudio.preload = "auto";
+
+function preloadImages(sources) {
+    sources.forEach((src) => {
+        const img = new Image();
+        img.src = src;
+    });
+}
+
+function prefetchResource(url, as) {
+    if (!url || document.querySelector(`link[rel="prefetch"][href="${url}"]`)) {
+        return;
+    }
+
+    const link = document.createElement("link");
+    link.rel = "prefetch";
+    link.as = as;
+    link.href = url;
+    document.head.appendChild(link);
+}
 
 function unlockAudioElement(audio) {
     if (!audio) {
@@ -643,6 +663,25 @@ function init() {
     setupAudioUnlock();
     bindEvents();
     resetTypewriter();
+    loadCurrentTrack();
+
+    const deferredImages = [
+        "images/新成就 .png",
+        "images/星之果实.gif",
+        "images/鬼魂.gif"
+    ];
+    const deferredAudio = playlist.slice(1);
+
+    const warmUpAssets = () => {
+        preloadImages(deferredImages);
+        deferredAudio.forEach((src) => prefetchResource(src, "audio"));
+    };
+
+    if ("requestIdleCallback" in window) {
+        window.requestIdleCallback(warmUpAssets, { timeout: 1800 });
+    } else {
+        window.setTimeout(warmUpAssets, 1200);
+    }
 
     // 尝试自动播放音乐
     if (bgmAudio && !prefersTouchInput) {
