@@ -16,29 +16,29 @@ document.addEventListener('DOMContentLoaded', () => {
     const dialogAudio = new Audio('yinxiao/星露谷对话3.mp3');
 
     const playlist = [
-        'bgm/02. Cloud Country.flac',
-        'bgm/07. Spring (Wild Horseradish Jam).flac',
-        'bgm/08. Pelican Town.flac',
-        'bgm/09. Flower Dance.flac',
-        'bgm/11. Distant Banjo.flac'
+        'bgm/02. Cloud Country.mp3',
+        'bgm/07. Spring (Wild Horseradish Jam).mp3',
+        'bgm/08. Pelican Town.mp3',
+        'bgm/09. Flower Dance.mp3',
+        'bgm/11. Distant Banjo.mp3'
     ];
 
     const seasonThemes = {
         spring: {
             background: 'images/背景（春）.png',
-            track: "bgm/05. Spring (It's A Big World Outside).flac"
+            track: "bgm/05. Spring (It's A Big World Outside).mp3"
         },
         summer: {
             background: 'images/背景（夏）.png',
-            track: "bgm/13. Summer (Nature's Crescendo).flac"
+            track: "bgm/13. Summer (Nature's Crescendo).mp3"
         },
         fall: {
             background: 'images/背景（秋）.png',
-            track: "bgm/20. Fall (The Smell Of Mushroom).flac"
+            track: "bgm/20. Fall (The Smell Of Mushroom).mp3"
         },
         winter: {
             background: 'images/背景（冬）.png',
-            track: "bgm/27. Winter (Nocturne Of Ice).flac"
+            track: "bgm/27. Winter (Nocturne Of Ice).mp3"
         }
     };
 
@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const MUSIC_HOLD_DURATION = 420;
 
     bgmAudio.loop = false;
-    dialogAudio.preload = 'auto';
+    dialogAudio.preload = 'none';
 
     function unlockAudioElement(audio) {
         if (!audio) {
@@ -90,16 +90,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function setupAudioUnlock() {
         const unlockAudio = () => {
-            [bgmAudio, dialogAudio].forEach(unlockAudioElement);
+            unlockAudioElement(bgmAudio);
         };
 
         window.addEventListener('pointerdown', unlockAudio, { once: true, passive: true });
         window.addEventListener('keydown', unlockAudio, { once: true });
     }
 
+    function getActiveTrack() {
+        if (state.currentSeasonKey && seasonThemes[state.currentSeasonKey]) {
+            return seasonThemes[state.currentSeasonKey].track;
+        }
+
+        return playlist[state.currentTrackIndex];
+    }
+
     function loadCurrentTrack() {
-        bgmAudio.src = playlist[state.currentTrackIndex];
-        bgmAudio.load();
+        const nextTrack = getActiveTrack();
+        if (!nextTrack) {
+            return;
+        }
+
+        if (bgmAudio.dataset.activeTrack !== nextTrack) {
+            bgmAudio.src = nextTrack;
+            bgmAudio.dataset.activeTrack = nextTrack;
+        }
     }
 
     function setSeasonChipState(activeSeason) {
@@ -118,8 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         state.currentSeasonKey = seasonKey;
         mainPage.style.backgroundImage = `url('${theme.background}')`;
-        bgmAudio.src = theme.track;
-        bgmAudio.load();
+        loadCurrentTrack();
         setSeasonChipState(seasonKey);
 
         if (shouldPlay) {
@@ -128,6 +142,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function playCurrentTrack() {
+        loadCurrentTrack();
         return bgmAudio.play().then(() => {
             state.isMusicPlaying = true;
         }).catch(err => {
@@ -139,7 +154,6 @@ document.addEventListener('DOMContentLoaded', () => {
         state.currentSeasonKey = null;
         setSeasonChipState(null);
         state.currentTrackIndex = (state.currentTrackIndex + 1) % playlist.length;
-        loadCurrentTrack();
         return playCurrentTrack();
     }
 
@@ -237,22 +251,48 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    loadCurrentTrack();
     setupAudioUnlock();
 
-    // 预加载关键图片
-    const preloadImages = [
-        'images/背景1.png', 'images/音乐.gif', 'images/主页 logo左.png', 
-        'images/星露谷logo（中文）.png', 'images/主页 logo右.png',
-        'images/贾斯.png', 'images/雷欧.png', 'images/塞巴斯蒂安.png',
-        'images/文森特.png', 'images/桑迪.png', 'images/刘易斯.png',
-        'images/泪晶.png', 'images/思绪飘乱.png', 'images/惊讶.gif', 'images/无话可说.png',
-        'images/背景（春）.png', 'images/背景（夏）.png', 'images/背景（秋）.png', 'images/背景（冬）.png'
-    ];
-    preloadImages.forEach(src => {
-        const img = new Image();
-        img.src = src;
-    });
+    function preloadImages(sources) {
+        sources.forEach((src) => {
+            const img = new Image();
+            img.src = src;
+        });
+    }
+
+    function prefetchDocument(url) {
+        if (!url || document.querySelector(`link[rel="prefetch"][href="${url}"]`)) {
+            return;
+        }
+
+        const link = document.createElement('link');
+        link.rel = 'prefetch';
+        link.as = 'document';
+        link.href = url;
+        document.head.appendChild(link);
+    }
+
+    function scheduleDeferredPreload() {
+        const deferredImages = [
+            'images/泪晶.png',
+            'images/思绪飘乱.png',
+            'images/惊讶.gif',
+            'images/无话可说.png',
+            'images/背景（春）.png',
+            'images/背景（夏）.png',
+            'images/背景（秋）.png',
+            'images/背景（冬）.png'
+        ];
+
+        const runPreload = () => preloadImages(deferredImages);
+        if ('requestIdleCallback' in window) {
+            window.requestIdleCallback(runPreload, { timeout: 1800 });
+        } else {
+            window.setTimeout(runPreload, 1200);
+        }
+
+        prefetchDocument('index.html');
+    }
 
     if (btnMainLogo) {
         btnMainLogo.addEventListener('animationend', () => {
@@ -290,6 +330,7 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => {
             mainPage.classList.remove('hidden');
             mainPage.classList.add('active');
+            scheduleDeferredPreload();
         }, 1500); // 等待淡出
     });
 

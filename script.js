@@ -20,11 +20,11 @@ const state = {
 };
 
 const playlist = [
-    "bgm/04. Settling In.flac",
-    "bgm/07. Spring (Wild Horseradish Jam).flac",
-    "bgm/08. Pelican Town.flac",
-    "bgm/09. Flower Dance.flac",
-    "bgm/11. Distant Banjo.flac"
+    "bgm/04. Settling In.mp3",
+    "bgm/07. Spring (Wild Horseradish Jam).mp3",
+    "bgm/08. Pelican Town.mp3",
+    "bgm/09. Flower Dance.mp3",
+    "bgm/11. Distant Banjo.mp3"
 ];
 
 const typewriterElement = document.getElementById("typewriter");
@@ -61,15 +61,15 @@ const pageTurnAudio = new Audio("yinxiao/翻书声.mp3");
 const MUSIC_HOLD_DURATION = 420;
 const prefersTouchInput = window.matchMedia("(hover: none), (pointer: coarse)").matches;
 
-selectButtonAudio.preload = "auto";
-gainItemAudio.preload = "auto";
-junimoAudio.preload = "auto";
-achievementAudio.preload = "auto";
-dogAudio.preload = "auto";
-catAudio.preload = "auto";
-horseRunAudio.preload = "auto";
-horseNeighAudio.preload = "auto";
-pageTurnAudio.preload = "auto";
+selectButtonAudio.preload = "none";
+gainItemAudio.preload = "none";
+junimoAudio.preload = "none";
+achievementAudio.preload = "none";
+dogAudio.preload = "none";
+catAudio.preload = "none";
+horseRunAudio.preload = "none";
+horseNeighAudio.preload = "none";
+pageTurnAudio.preload = "none";
 
 function unlockAudioElement(audio) {
     if (!audio) {
@@ -98,18 +98,7 @@ function unlockAudioElement(audio) {
 
 function setupAudioUnlock() {
     const unlockAudio = () => {
-        [
-            bgmAudio,
-            selectButtonAudio,
-            gainItemAudio,
-            junimoAudio,
-            achievementAudio,
-            dogAudio,
-            catAudio,
-            horseRunAudio,
-            horseNeighAudio,
-            pageTurnAudio
-        ].forEach(unlockAudioElement);
+        unlockAudioElement(bgmAudio);
     };
 
     window.addEventListener("pointerdown", unlockAudio, { once: true, passive: true });
@@ -120,14 +109,19 @@ function loadCurrentTrack() {
     if (!bgmAudio) {
         return;
     }
-    bgmAudio.src = playlist[state.currentTrackIndex];
-    bgmAudio.load();
+
+    const nextTrack = playlist[state.currentTrackIndex];
+    if (bgmAudio.dataset.activeTrack !== nextTrack) {
+        bgmAudio.src = nextTrack;
+        bgmAudio.dataset.activeTrack = nextTrack;
+    }
 }
 
 function playCurrentTrack() {
     if (!bgmAudio) {
         return Promise.resolve();
     }
+    loadCurrentTrack();
     return bgmAudio.play().then(() => {
         state.isMusicPlaying = true;
     }).catch(() => {
@@ -137,7 +131,6 @@ function playCurrentTrack() {
 
 function nextTrack() {
     state.currentTrackIndex = (state.currentTrackIndex + 1) % playlist.length;
-    loadCurrentTrack();
     return playCurrentTrack();
 }
 
@@ -499,11 +492,9 @@ function bindEvents() {
 
     if (btnMusicToggle && bgmAudio) {
         bgmAudio.loop = false;
-        loadCurrentTrack();
 
         bgmAudio.addEventListener("ended", () => {
             state.currentTrackIndex = (state.currentTrackIndex + 1) % playlist.length;
-            loadCurrentTrack();
             if (state.isMusicPlaying) {
                 playCurrentTrack();
             }

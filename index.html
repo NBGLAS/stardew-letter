@@ -168,31 +168,31 @@
         <!-- 星之果实模态框 -->
         <div id="stardrop-modal" class="hidden" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.6); z-index: 9999; display: flex; justify-content: center; align-items: center; flex-direction: column; overflow: hidden; pointer-events: auto;">
             <div style="background: #f4dca6; border: 8px solid #8e4a11; padding: 30px; text-align: center; border-radius: 10px; display: flex; flex-direction: column; align-items: center; justify-content: center; pointer-events: auto;">
-                <img src="images/星之果实.png" alt="星之果实" class="pixel-img" style="width: 64px; animation: bounce 2s infinite ease-in-out;">
+                <img src="images/星之果实.png" alt="星之果实" class="pixel-img" loading="lazy" decoding="async" style="width: 64px; animation: bounce 2s infinite ease-in-out;">
                 <p style="font-family: 'Zpix', sans-serif; font-size: 24px; color: #432112; margin-top: 20px;">恭喜你获得星之果实！</p>
                 <button id="btn-close-stardrop" style="margin-top: 20px; padding: 10px 20px; font-family: 'Zpix', sans-serif; font-size: 20px; background: #d67f2b; color: white; border: 4px solid #8e4a11; border-radius: 8px; cursor: pointer; pointer-events: auto;">收下</button>
             </div>
         </div>
 
-        <audio id="bgm-audio" loop preload="auto">
-            <source src="bgm/04. Settling In.flac" type="audio/flac">
+        <audio id="bgm-audio" loop preload="none">
+            <source src="bgm/04. Settling In.mp3" type="audio/mpeg">
         </audio>
 
         <section class="gallery-strip card-surface" aria-label="素材氛围带">
             <div class="gallery-item">
-                <img src="images/紫色小鸡.png" alt="左下角小鸡装饰" class="gallery-figure gallery-figure-chicken">
+                <img src="images/紫色小鸡.png" alt="左下角小鸡装饰" class="gallery-figure gallery-figure-chicken" loading="lazy" decoding="async">
             </div>
             <div class="gallery-icons" aria-hidden="true">
-                <img src="images/草莓.png" alt="" class="icon icon-32">
-                <img src="images/绿茶.png" alt="" class="icon icon-32">
-                <img src="images/上古水果.png" alt="" class="icon icon-32">
-                <img src="images/香蕉树.png" alt="" class="icon icon-32">
+                <img src="images/草莓.png" alt="" class="icon icon-32" loading="lazy" decoding="async">
+                <img src="images/绿茶.png" alt="" class="icon icon-32" loading="lazy" decoding="async">
+                <img src="images/上古水果.png" alt="" class="icon icon-32" loading="lazy" decoding="async">
+                <img src="images/香蕉树.png" alt="" class="icon icon-32" loading="lazy" decoding="async">
             </div>
             <div class="gallery-note">
-                <img src="images/阿比盖尔 吹笛子.gif" alt="" class="gallery-note-figure">
+                <img src="images/阿比盖尔 吹笛子.gif" alt="" class="gallery-note-figure" loading="lazy" decoding="async">
                 <p>把回忆慢慢拆开看，奖励和惊喜都会在路上等你。</p>
             </div>
-            <img src="images/祝尼魔（跳舞）.gif" alt="右下角跳舞祝尼魔" class="gallery-figure gallery-figure-junimo interactive-junimo" id="btn-gallery-junimo" role="button" tabindex="0" aria-label="播放祝尼魔音效">
+            <img src="images/祝尼魔（跳舞）.gif" alt="右下角跳舞祝尼魔" class="gallery-figure gallery-figure-junimo interactive-junimo" id="btn-gallery-junimo" role="button" tabindex="0" aria-label="播放祝尼魔音效" loading="lazy" decoding="async">
         </section>
 
         <section class="pet-corner card-surface" aria-label="农场小伙伴">
@@ -206,27 +206,27 @@
             <div class="pet-stage" id="pet-stage">
                 <button type="button" class="pet-friend pet-friend-nafu" data-pet-sound="dog" aria-label="nafu">
                     <img src="images/爱心.gif" alt="" class="pet-heart" aria-hidden="true">
-                    <img src="images/nafu.png" alt="nafu" class="pet-figure">
+                    <img src="images/nafu.png" alt="nafu" class="pet-figure" loading="lazy" decoding="async">
                     <span class="pet-name">nafu</span>
                 </button>
                 <button type="button" class="pet-friend pet-friend-zhaocai" data-pet-sound="cat" aria-label="招财">
                     <img src="images/爱心.gif" alt="" class="pet-heart" aria-hidden="true">
-                    <img src="images/招财.png" alt="招财" class="pet-figure">
+                    <img src="images/招财.png" alt="招财" class="pet-figure" loading="lazy" decoding="async">
                     <span class="pet-name">招财</span>
                 </button>
                 <button type="button" class="pet-friend pet-friend-halin" data-pet-sound="dog" aria-label="哈林">
                     <img src="images/爱心.gif" alt="" class="pet-heart" aria-hidden="true">
-                    <img src="images/哈林.png" alt="哈林" class="pet-figure">
+                    <img src="images/哈林.png" alt="哈林" class="pet-figure" loading="lazy" decoding="async">
                     <span class="pet-name">哈林</span>
                 </button>
                 <button type="button" class="pet-friend pet-friend-horse" id="btn-pet-horse" aria-label="马儿">
                     <img src="images/爱心.gif" alt="" class="pet-heart" aria-hidden="true">
                     <span class="pet-bubble" id="horse-wish">想吃一根胡萝卜</span>
-                    <img src="images/马儿.gif" alt="马儿" class="pet-figure pet-horse-figure">
+                    <img src="images/马儿.gif" alt="马儿" class="pet-figure pet-horse-figure" loading="lazy" decoding="async">
                     <span class="pet-name">马儿</span>
                 </button>
                 <button type="button" class="draggable-carrot" id="btn-draggable-carrot" aria-label="拖动胡萝卜">
-                    <img src="images/胡萝卜.png" alt="胡萝卜" class="carrot-figure">
+                    <img src="images/胡萝卜.png" alt="胡萝卜" class="carrot-figure" loading="lazy" decoding="async">
                 </button>
             </div>
         </section>
@@ -234,7 +234,7 @@
 
     <!-- 左下角成就提示框 -->
     <div id="achievement-toast" class="achievement-toast hidden">
-        <img src="images/新成就 .png" alt="新成就" class="achievement-full-img">
+        <img src="images/新成就 .png" alt="新成就" class="achievement-full-img" loading="lazy" decoding="async">
     </div>
 
     <script src="common.js"></script>
